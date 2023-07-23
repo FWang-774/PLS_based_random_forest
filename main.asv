@@ -1,0 +1,284 @@
+clear;
+clc;
+%%%%%%%%%%%%%>>>>>>>>>>>for Yacht Hydrodynamics data
+YachtHydrodynamics=xlsread('C:\Users\Administrator\Desktop\datasample\YachtHydrodynamics.xls');
+data=YachtHydrodynamics(:,1:6);
+output=YachtHydrodynamics(:,7);
+load 308randorder.mat;
+% randorder=randperm(308);
+normalizeddata=(data-min(min(data)))/(max(max(data))-min(min(data)));
+normalizedout=(output-min(output))/(max(output)-min(output));
+tr=normalizeddata(randorder(1:200),:);
+trc=normalizedout(randorder(1:200));
+ts=normalizeddata(randorder(201:end),:);
+tsc=normalizedout(randorder(201:end));
+%%%%%%%%%%%%%%>>>>>>>>>end Yacht Hydrodynamics data
+%》》》》》》》》》》for Parkinsons Telemonitoring data
+% load C:\Users\Administrator\Desktop\datasample\processed_PARKISON.txt
+% data=processed_PARKISON(:,1:21);
+% output=processed_PARKISON(:,22);
+% load 5875randorder.mat;
+% normalizeddata=(data-min(min(data)))/(max(max(data))-min(min(data)));
+% normalizedout=(output-min(output))/(max(output)-min(output));
+% tr=normalizeddata(randorder(1:4400),:);
+% trc=normalizedout(randorder(1:4400));
+% ts=normalizeddata(randorder(4401:end),:);
+% tsc=normalizedout(randorder(4401:end));
+% %>>>>>>>>>>>>>end Parkinsons Telemonitoring data
+%》》》》》》》》》》》》》for Concrete Compressive Strength Data Set
+% Concrete=xlsread('C:\Users\Administrator\Desktop\datasample\processedConcrete_Data.xls');
+% data=Concrete(:,1:8);
+% output=Concrete(:,9);
+% load 1030randorder.mat;
+% normalizeddata=(data-min(min(data)))/(max(max(data))-min(min(data)));
+% normalizedout=(output-min(output))/(max(output)-min(output));
+% tr=normalizeddata(randorder(1:770),:);
+% trc=normalizedout(randorder(1:770));
+% ts=normalizeddata(randorder(771:end),:);
+% tsc=normalizedout(randorder(771:end));
+%>>>>>>>>>>>>>>>>>>>>>>>>>end Concrete Compressive Strength Data Set
+%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>for Condition Based Maintenance data
+% load C:\Users\Administrator\Desktop\datasample\CBM.txt
+% data=CBM(:,1:16);
+% output=CBM(:,17);
+% load 11934randorder.mat;
+% normalizeddata=(data-min(min(data)))/(max(max(data))-min(min(data)));
+% normalizedout=(output-min(output))/(max(output)-min(output));
+% tr=normalizeddata(randorder(1:3000),:);
+% trc=normalizedout(randorder(1:3000));
+% ts=normalizeddata(randorder(8001:9000),:);
+% tsc=normalizedout(randorder(8001:9000));%mtry=4，ntree=200
+%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>end Condition Based Maintenance data
+%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>for airfoil_self_noise data
+% load C:\Users\Administrator\Desktop\datasample\airfoil_self_noise.dat
+%  data=airfoil_self_noise(:,1:5);
+% output=airfoil_self_noise(:,6);
+% load 1503randorder.mat;
+% normalizeddata=(data-min(min(data)))/(max(max(data))-min(min(data)));
+% normalizedout=(output-min(output))/(max(output)-min(output));
+% tr=normalizeddata(randorder(1:1200),:);
+% trc=normalizedout(randorder(1:1200));
+% ts=normalizeddata(randorder(1201:end),:);
+% tsc=normalizedout(randorder(1201:end));
+%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>end airfoil_self_noise data
+%》》》》》》》》》》》》for Residential-Building-Data-Set data
+% Residential=xlsread('C:\Users\Administrator\Desktop\datasample\Residential-Building-Data-Set.xls');
+% data=Residential(:,1:103);
+% output=Residential(:,105);
+% load 372randorder.mat;
+% normalizeddata=(data-min(min(data)))/(max(max(data))-min(min(data)));
+% normalizedout=(output-min(output))/(max(output)-min(output));
+% tr=normalizeddata(randorder(1:280),:);
+% trc=normalizedout(randorder(1:280));
+% ts=normalizeddata(randorder(281:end),:);
+% tsc=normalizedout(randorder(281:end));
+%》》》》》》》》》》》》》》》》》》》end Residential-Building-Data-Set data
+%%............nox data....................
+%%first nox data training sample 1000 testing 350
+% load threegroup.mat
+% nox=firstdata;
+% data=nox(:,1:38);
+% output=nox(:,43);
+% load threeorder.mat;
+% % normalizeddata=(data-min(min(data)))/(max(max(data))-min(min(data)));
+% % normalizedoutput=(output-min(output))/(max(output)-min(output));
+% %  tr= normalizeddata(randorder1(1:1000),:);
+% %  trc= normalizedoutput(randorder1(1:1000));
+% %  ts= normalizeddata(randorde1(1001:1350),:);
+% %  tsc= normalizedoutput(randorder1(1001:1350));
+%valnox=seconddata;
+%valdata=valnox(:,1:38)
+%valoutput=valnox(:,43);
+% normalizedvaldata=(valdata-min(min(data)))/(max(max(data))-min(min(data)));
+% normalizedvaloutput=(valoutput-min(output))/(max(output)-min(output));
+% %% second NOx DATA
+% nox=xlsread('C:\Users\Administrator\Desktop\test\nox.xls');
+% data=nox(:,1:34);
+% output=nox(:,35);
+% load 3622randorder.mat
+% normalizeddata=(data-min(min(data)))/(max(max(data))-min(min(data)));
+% normalizedoutput=(output-min(output))/(max(output)-min(output));
+% %  tr= normalizeddata(randorder1(1:2700),:);
+% %  trc= normalizedoutput(randorder1(1:2700));
+% %  ts= normalizeddata(randorde1(2701:3400),:);
+% %  tsc= normalizedoutput(randorder1(2701:3400));
+% load threegroup.mat
+%valnox=thirddata;
+%valdata=valnox(:,1:34)
+%valoutput=valnox(:,35);
+% normalizedvaldata=(valdata-min(min(data)))/(max(max(data))-min(min(data)));
+% normalizedvaloutput=(valoutput-min(output))/(max(output)-min(output));
+%%%%%%%%%%%%%%end second NOx DATA
+ num_envfeat=3;
+ num_samp=5;
+ num_tree=30;
+fid_log = fopen('myforestslog.txt', 'w');
+[num_sample, num_feat] = size(tr);
+if (num_envfeat > num_feat)
+    error('the number of envolved feature has to be smaller than original one');
+end 
+voteSpace = []; Weight = []; WeightDec = [];
+%this is for improved RF
+% cc1=[7,10,8,9,11];
+% cc2=[19,18,16,20,21,13,12,5,1,15,6,2,4,14,17,3];%parkison 21个特征
+% cc1=[10,11,5,3];
+% cc2=[14,8,6,4,15,7,13,16,1,2,9,12];%CBMdata,16个特征，mtry=4，ntree=200
+% cc1=[1,5,3];
+% cc2=[2,4];%% for airfoil_self_noise data,5个特征，mtry=3，ntree=200
+% cc1=[6,4,2];
+% cc2=[5,1,3];%%for Yacht Hydrodynamics data
+% cc1=[5,8,6,27,4,96,1,76,57,103];
+% cc2=[20,48,7,32,72,49,89,77,3,24,19,10,68,21,15,2,70,11,91,80,23,59,84,39,101,97,41,40,29,78,38,53,13,62,34,61,86,63,25,58,98,71,44,46,69,65,95,93,87,100,14,12,33,74,88,66,45,52,55,26,99,81,60,85,9,36,90,92,50,47,30,54,73,67,102,51,16,28,42,22,79,43,31,82,83,35,64,17,18,56,94,75,37];
+% Residential-Building-Data-Set data103个特征，mtry=10，ntree=100
+% cc1=[8,1,4];
+% cc2=[5,2,7,6,3];%Concrete_Data8个特征，mtry=3，即num_envfeat=3.
+%%%%PLSf metod
+% [yPLS,RMSEPLS]=plsregres(tr,trc,ts,tsc);
+% [t,w] = PLS_mannual(tr(1:5,:),trc(1:5));
+% tr= tr*w;
+% ts = ts*w;
+%%%%%%%%%%%%%%PCA method
+%  N_comp = 5;%PCA预处理之后所取的维数
+% [s_COEFF1,s_latent1]= test_PCA(train_x); %  
+% val=diag(s_latent1);   %
+% [val,ind]=sort(val,'descend'); 
+% s_tranMatrix =s_COEFF1(:,ind(1:N_comp)); 
+% tr = tr*s_tranMatrix; %reduce dim
+% DPCA = pdist(s_train_mainprin_PCA,'euclidean');
+% tc= tc*s_tranMatrix;
+%%%%%%%%%%%%%%%%%%%%%
+%》》》》》》》》》》》test for other method
+% model_SVM = svmtrain(trc,tr,'-s 3 -t 2 -c 100 -g 20 -p 0.001' );
+% [yfitSVM, accuracy, dec_values] =svmpredict(tsc,ts,model_SVM);
+% [ytrSVM, traccuracy, trdec_values] =svmpredict(trc,tr,model_SVM);
+% [trrmsesvm,trmaesvm,trr2svm]=perfomance(trc*(max(output)-min(output))+min(output),ytrSVM*(max(output)-min(output))+min(output));
+% [termsesvm,temaesvm,ter2svm]=perfomance(tsc*(max(output)-min(output))+min(output),yfitSVM*(max(output)-min(output))+min(output));
+% set_train=[trc tr];set_test=[tsc ts];
+% [ytefitELM ytrELM testingelm trainingelm] = ny_ELM(set_train,set_test,tsc);
+% [trrmseelm,trmaeelm,trr2elm]=perfomance(trc*(max(output)-min(output))+min(output),ytrELM'*(max(output)-min(output))+min(output));
+% [termseelm,temaeelm,ter2elm]=perfomance(tsc*(max(output)-min(output))+min(output),ytefitELM*(max(output)-min(output))+min(output));
+%%%%%%%%%%%end the test
+for runtime=1:10
+  voteSpace = []; Weight = []; WeightDec = [];  
+  result.majorlabel = [];
+result.majoraccuracy = [];
+result.majorerror = [];
+result.majorctable = [];
+result.weightlabel = [];
+result.weightaccuracy = [];
+result.weighterror = [];
+result.weightctable = [];
+result.weightlabel = [];
+result.weight = [];
+result.weightdecaccuracy = [];
+result.weightdecerror = [];
+result.weightdecctable = [];
+result.weightdec = [];
+result.allvote = [];
+ for i = 1 : num_tree
+    if mod(i,5) == 0
+        fprintf(fid_log, '        - %d/%d trees have been constructed.... \n',i,num_tree);        
+        fprintf('        - %d/%d trees have been constructed.... \n',i,num_tree);
+    end
+    %--- processing bootstrp with replacement
+%    fprintf('Bootstrapping....');
+ [curtr, curtrc, selSamples] = bootstrapbal(tr, trc);
+    %--- choosing random feature
+    [dummy, curfeat] = sort(rand(1,num_feat));
+    curfeat = curfeat(1:num_envfeat);
+    curtr = curtr(:, curfeat);
+    curts = ts(:, curfeat);
+    %----the feature selcection by wangfang
+%     numim=randi([1 length(cc1)]);
+%     numim1=randperm(length(cc1));
+%     curfeat1=cc1(:,numim1(1:numim));
+%     numunim=num_envfeat-numim;
+%     numim2=randperm(length(cc2));
+%     curfeat2=cc2(:,numim2(1:numunim));
+%     curfeat=[curfeat1,curfeat2];
+%       curtr = curtr(:, curfeat);
+%     curts = ts(:, curfeat);
+    %%%%end the program by wangfang
+    %--- growing a tree
+%    fprintf('Growing tree with %dx%d samples are processing... ', size(curtr,1), size(curtr,2));
+    T = grow_tree(curtr, curtrc);
+%    fprintf('DONE!!\n');
+   trainresult=test_tree(T,tr(:,curfeat),trc);
+   trainvote(i,:)=trainresult.classlabel;
+    oobResult = test_oob(T, selSamples, tr(:, curfeat), trc);   % doing out-of-bag
+    testResult = test_tree(T,curts,tsc);
+    voteSpace = [voteSpace testResult.classlabel];
+end
+ for i=1:size(voteSpace,1)
+     label(i)=mean(voteSpace(i,:));
+ end
+ for i=1:size(trainvote,2)
+   trainlabel(i)=mean(trainvote(:,i)); 
+ end
+[RMSEtr,MAEtr,R2tr]=perfomance(trc'*(max(output)-min(output))+min(output),trainlabel*(max(output)-min(output))+min(output));
+[RMSEts,MAEts,R2ts]=perfomance(tsc'*(max(output)-min(output))+min(output),label*(max(output)-min(output))+min(output));
+%%%%%%%%%%PLS method
+ [XL,YL,XS,YS,beta,PCTVAR,MSE]=plsregress(trainvote',trc);
+ ytefit=[ones(size(voteSpace,1),1) voteSpace]*beta;
+ ytrfit=[ones(size(trainvote',1),1) trainvote']*beta;
+[plstrrmse,plstrmae,plstrr2]=perfomance(trc*(max(output)-min(output))+min(output),ytrfit*(max(output)-min(output))+min(output));
+[plstermse,plstemae,plster2]=perfomance(tsc*(max(output)-min(output))+min(output),ytefit*(max(output)-min(output))+min(output));
+realpls=ytefit*(max(output)-min(output))+min(output);
+%%%%%%%%%%BP method
+ elmtrainset=[trc trainvote'];
+[trantempH,H,InputWeight,OutputWeight,Y]=elm_train1(elmtrainset, 0, 50, 'sig');
+dataX=elmtrainset(:,2:end);
+Ingre=zeros(1,size(dataX,2));
+const=var(Y);%const=var(y);
+for i=1:50
+    a1=var(trantempH(i,:));%a1=var(hi)
+    for j=1:size(dataX,2)
+        a=cov(trantempH(i,:),dataX(:,j));%a=cov(ji,xj)
+        b=var(dataX(:,j));%b=var(xj);
+        I(i,j)=a(1,2)*InputWeight(i,j)/(a1*b);
+    end
+    c=cov(H(i,:),Y);%cov(Hi,y)
+    d=var(H(i,:));%d=var(Hi)
+    II(i)=c(1,2)*OutputWeight(i)/(d*const);
+end
+for j=1:size(dataX,2)
+    for i=1:50
+        Ingre(j)=I(i,j)*II(i)+Ingre(j);
+    end
+end
+Ingre=abs(Ingre);
+[Ingre,order]=sort(Ingre,'descend');
+trainvote=trainvote';
+final=zeros(size(trainvote,1),size(trainvote,2));
+sum1=zeros(size(trainvote,1),1);
+for i=1:size(trainvote,1)
+    count=1;
+    for j=1:size(trainvote,2)
+        sum1(i)=trainvote(i,order(j))+sum1(i);
+        final(i,j)=sum1(i)/count;
+%         final(i,j)=final(i,j)*(max(output)-min(output))+min(output);
+        count=count+1;   
+    end
+end
+RMSE=zeros(size(final,2),1);
+for i=5:size(final,2)
+    e1=final(:,i)*(max(output)-min(output))+min(output)-(trc*(max(output)-min(output))+min(output));
+    e1=e1.^2;
+    RMSE(i)=sqrt(sum(e1)/length(final(:,i)));
+end
+[value,opt]=min(RMSE(5:end));
+bpytr=final(:,opt+4);
+[bptrrmse,bptrmae,bptrr2]=perfomance(trc*(max(output)-min(output))+min(output),bpytr*(max(output)-min(output))+min(output));
+tefinal=zeros(size(voteSpace,1),1);
+for i=1:size(voteSpace,1)
+    tesum1=0;
+    for j=1:(opt+4)
+        tesum1=voteSpace(i,order(j))+tesum1;
+    end
+    tefinal(i)=tesum1/(opt+4);
+end
+[bptermse,bptemae,bpter2]=perfomance(tsc*(max(output)-min(output))+min(output), tefinal*(max(output)-min(output))+min(output));
+%%%%%%%%%%%%%end BP
+jieguojilu(runtime,:)=[RMSEtr,MAEtr,R2tr,RMSEts,MAEts,R2ts,plstrrmse,plstrmae,plstrr2,plstermse,plstemae,plster2,];
+ end
+
